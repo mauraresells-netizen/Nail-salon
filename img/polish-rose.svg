@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6c887"/><stop offset="1" stop-color="#c39d54"/></linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a3475a"/><stop offset="1" stop-color="#7a3140"/></linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#f6f0ea"/>
+  <circle cx="285" cy="120" r="92" fill="#f2d4d7" opacity="0.55"/>
+  <ellipse cx="200" cy="338" rx="92" ry="16" fill="#1a0a0d" opacity="0.10"/>
+  <!-- nail polish bottle -->
+  <rect x="150" y="172" width="100" height="158" rx="22" fill="url(#body)"/>
+  <rect x="150" y="172" width="100" height="158" rx="22" fill="none" stroke="#d4af6a" stroke-width="1.5" opacity="0.6"/>
+  <line x1="166" y1="262" x2="234" y2="262" stroke="#d4af6a" stroke-width="2" opacity="0.7"/>
+  <line x1="172" y1="276" x2="228" y2="276" stroke="#d4af6a" stroke-width="1.2" opacity="0.5"/>
+  <ellipse cx="172" cy="205" rx="9" ry="26" fill="#fdf8f5" opacity="0.22"/>
+  <rect x="183" y="150" width="34" height="26" fill="#5f2531"/>
+  <rect x="166" y="68" width="68" height="88" rx="12" fill="url(#cap)"/>
+  <ellipse cx="184" cy="92" rx="7" ry="20" fill="#fff8e9" opacity="0.5"/>
+</svg>

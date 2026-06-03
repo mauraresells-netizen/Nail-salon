@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="nbase" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7dde0"/><stop offset="1" stop-color="#e7b6bd"/></linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#f6f0ea"/>
+  <circle cx="200" cy="200" r="150" fill="#f2d4d7" opacity="0.4"/>
+  <!-- one large nail-art nail -->
+  <g transform="translate(150,80) scale(1.65)">
+    <path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z" fill="url(#nbase)"/>
+    <path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z" fill="none" stroke="#d4af6a" stroke-width="1.2"/>
+  </g>
+  <!-- gold blossom + dots nail art -->
+  <g fill="#d4af6a">
+    <circle cx="200" cy="200" r="9"/>
+    <circle cx="200" cy="178" r="7"/><circle cx="221" cy="193" r="7"/><circle cx="213" cy="218" r="7"/><circle cx="187" cy="218" r="7"/><circle cx="179" cy="193" r="7"/>
+  </g>
+  <circle cx="200" cy="200" r="4" fill="#8b3a4a"/>
+  <g fill="#8b3a4a">
+    <circle cx="200" cy="150" r="4"/><circle cx="200" cy="255" r="4"/><circle cx="200" cy="270" r="3"/>
+  </g>
+  <g fill="#d4af6a">
+    <path d="M250,140 l3,9 9,3 -9,3 -3,9 -3,-9 -9,-3 9,-3 z"/>
+    <path d="M150,250 l2.5,7 7,2.5 -7,2.5 -2.5,7 -2.5,-7 -7,-2.5 7,-2.5 z"/>
+  </g>
+</svg>

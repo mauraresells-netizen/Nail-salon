@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <clipPath id="c1"><path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z"/></clipPath>
+    <clipPath id="c2" transform="translate(0,0)"><path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z"/></clipPath>
+    <clipPath id="c3"><path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z"/></clipPath>
+  </defs>
+  <rect width="400" height="400" fill="#1a0a0d"/>
+  <circle cx="200" cy="180" r="120" fill="#8b3a4a" opacity="0.22"/>
+  <!-- three french-manicure nails -->
+  <g transform="translate(70,128)">
+    <g clip-path="url(#c1)"><rect x="0" y="0" width="60" height="146" fill="#f0d8cc"/><rect x="0" y="0" width="60" height="34" fill="#fdf8f5"/><rect x="0" y="34" width="60" height="3" fill="#d4af6a"/></g>
+    <path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z" fill="none" stroke="#d4af6a" stroke-width="1.4"/>
+  </g>
+  <g transform="translate(170,110)">
+    <g clip-path="url(#c2)"><rect x="0" y="0" width="60" height="146" fill="#f0d8cc"/><rect x="0" y="0" width="60" height="34" fill="#fdf8f5"/><rect x="0" y="34" width="60" height="3" fill="#d4af6a"/></g>
+    <path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z" fill="none" stroke="#d4af6a" stroke-width="1.4"/>
+  </g>
+  <g transform="translate(270,128)">
+    <g clip-path="url(#c3)"><rect x="0" y="0" width="60" height="146" fill="#f0d8cc"/><rect x="0" y="0" width="60" height="34" fill="#fdf8f5"/><rect x="0" y="34" width="60" height="3" fill="#d4af6a"/></g>
+    <path d="M30,0 C12,18 0,70 0,118 C0,136 14,146 30,146 C46,146 60,136 60,118 C60,70 48,18 30,0 Z" fill="none" stroke="#d4af6a" stroke-width="1.4"/>
+  </g>
+</svg>

@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nail Salon — Luxury Nail Studio · Glasgow</title>
+
+<!-- SEO / social meta -->
+<meta name="description" content="Nail Salon — Glasgow's boutique luxury nail studio. Manicures, pedicures, nail art, extensions and bridal nails in the heart of the city." />
+<meta property="og:title" content="Nail Salon · Luxury Nail Studio, Glasgow" />
+<meta property="og:description" content="Glasgow's boutique nail studio. Where every detail is a work of art." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#8b3a4a" />
+<!-- Rose monogram favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%238b3a4a'/%3E%3Cg fill='none' stroke='%23d4af6a' stroke-width='1.4'%3E%3Ccircle cx='16' cy='16' r='3'/%3E%3Cpath d='M16 13a5 5 0 1 1-5 5'/%3E%3Cpath d='M19 19a7 7 0 1 1-7-7'/%3E%3C/g%3E%3C/svg%3E" />
+
+<!-- ============================================================
+     GOOGLE FONTS — Cormorant Garamond (serif) + Raleway (sans)
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   DESIGN TOKENS — CSS CUSTOM PROPERTIES
+   Every colour, font, spacing and timing value lives here.
+   ============================================================ */
+:root {
+  /* ---- Colour palette ---- */
+  --c-blush:        #f2d4d7;   /* soft blush rose */
+  --c-rose:         #8b3a4a;   /* deep rose */
+  --c-gold:         #d4af6a;   /* champagne gold */
+  --c-white:        #fdf8f5;   /* warm white */
+  --c-ink:          #1a0a0d;   /* near-black text / dark sections */
+
+  /* ---- Derived / tints ---- */
+  --c-blush-soft:   #f6f0ea;   /* warm ivory (was pale pink) — calmer, less pink */
+  --c-blush-tint:   #efe6dd;   /* warm sand */
+  --c-rose-soft:    rgba(139, 58, 74, 0.35);
+  --c-gold-soft:    rgba(212, 175, 106, 0.35);
+
+  /* ---- Filler photo (swap for real photography) ---- */
+  --photo: url("pink-flowers-minimal-4k-g0.jpg");
+
+  /* ---- Typography ---- */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:  'Raleway', 'Helvetica Neue', sans-serif;
+
+  --ls-tight:   0.04em;
+  --ls-airy:    0.14em;   /* generous editorial heading spacing */
+  --ls-wide:    0.32em;   /* very wide descriptor spacing */
+
+  /* ---- Spacing scale ---- */
+  --sp-xs:  0.5rem;
+  --sp-sm:  1rem;
+  --sp-md:  2rem;
+  --sp-lg:  4rem;
+  --sp-xl:  7rem;
+  --sp-2xl: 10rem;
+
+  --maxw:   1200px;
+
+  /* ---- Timing & easing ---- */
+  --ease-soft:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-gentle:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --t-colour:     0.3s ease;
+  --t-transform:  0.45s var(--ease-gentle);
+  --t-reveal:     0.8s var(--ease-soft);
+  --t-splash:     1.4s var(--ease-soft);
+}
+
+/* ============================================================
+   GLOBAL RESET & BASE
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--c-ink);
+  background: var(--c-white);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Lock scroll while splash is active */
+body.splash-locked { overflow: hidden; height: 100vh; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: var(--ls-airy);
+  line-height: 1.15;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ============================================================
+   GRAIN OVERLAY — fixed SVG noise over the whole page (~3.5%)
+   ============================================================ */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   1. SPLASH / ENTRY PAGE
+   Sits above everything; main site hidden beneath it.
+   ============================================================ */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* ---- SPLASH IMAGE — the provided photo (swap point) ---- */
+  background-image: url("pink-flowers-minimal-4k-g0.jpg");
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--t-splash), opacity var(--t-splash), filter var(--t-splash);
+}
+/* Stronger dark vignette + centre scrim for crisp, legible text */
+#splash::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(20,8,11,0.30) 0%, rgba(20,8,11,0.78) 100%);
+  pointer-events: none;
+}
+/* Glass-dark plate behind the text — guarantees contrast, adds depth */
+.splash-inner {
+  position: relative;
+  z-index: 2;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(2rem, 8vw, 5rem);
+  background: rgba(20,8,11,0.34);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(212,175,106,0.5);
+  border-radius: 4px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  transition: opacity 0.6s var(--ease-soft), transform 0.6s var(--ease-soft);
+}
+.splash-title {
+  font-size: clamp(2.8rem, 10vw, 7rem);
+  color: var(--c-white);
+  /* clearer treatment: heavier weight + airy uppercase tracking */
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  margin-left: 0.22em;            /* optical balance for the tracking */
+  opacity: 0;
+  animation: splashFade 1.5s var(--ease-soft) 0.2s forwards;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+}
+/* thin gold rule under the title */
+.splash-title-rule {
+  width: 0; height: 1px; margin: 1.2rem auto 0;
+  background: var(--c-gold);
+  opacity: 0;
+  animation: ruleGrow 1.4s var(--ease-soft) 1.4s forwards;
+}
+@keyframes ruleGrow { to { width: 70%; opacity: 0.9; } }
+.splash-desc {
+  margin-top: 1.2rem;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(0.72rem, 2vw, 0.95rem);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: #eccf94;                 /* brighter champagne for legibility */
+  opacity: 0;
+  animation: splashFade 1.5s var(--ease-soft) 2s forwards;
+}
+.splash-cta {
+  display: inline-block;
+  margin-top: var(--sp-lg);
+  padding: 0.9rem 3.2rem;
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  border: 1px solid var(--c-gold);
+  background: var(--c-gold);       /* solid gold pill — high contrast */
+  opacity: 0;
+  animation: splashFade 1.2s var(--ease-soft) 2.6s forwards,
+             goldPulse 3s ease-in-out 3.4s infinite;
+  transition: background var(--t-colour), color var(--t-colour), transform var(--t-transform);
+}
+.splash-cta:hover { background: transparent; color: var(--c-white); transform: translateY(-2px); }
+
+@keyframes splashFade { to { opacity: 1; } }
+
+/* Breathing gold glow */
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(212,175,106,0); }
+  50%      { box-shadow: 0 0 34px rgba(212,175,106,0.6); }
+}
+
+/* Exit — cinematic dissolve: the text panel lifts away first, then the whole
+   image zooms in, blurs and fades to reveal the site beneath. */
+#splash.exiting {
+  transform: scale(1.22);
+  opacity: 0;
+  filter: blur(12px);
+}
+#splash.exiting .splash-inner {
+  opacity: 0;
+  transform: translateY(-40px) scale(0.94);
+  transition: opacity 0.45s var(--ease-soft), transform 0.45s var(--ease-soft);
+}
+
+/* ============================================================
+   MAIN SITE — hidden & inert until splash completes
+   ============================================================ */
+#site {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-soft);
+}
+#site.revealed {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* ============================================================
+   2. NAVIGATION
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  transition: background var(--t-colour), backdrop-filter var(--t-colour),
+              border-color var(--t-colour), padding var(--t-colour);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(253,248,245,0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--c-blush);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--c-rose);
+  letter-spacing: var(--ls-tight);
+}
+.nav-links {
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+}
+.nav-links a {
+  position: relative;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-airy);
+  font-weight: 400;
+  color: var(--c-ink);
+  transition: color var(--t-colour);
+  padding-bottom: 4px;
+}
+/* Expanding champagne-gold underline from centre */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--c-gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--t-transform);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--c-rose); }
+
+.nav-book {
+  border: 1px solid var(--c-rose);
+  padding: 0.55rem 1.4rem !important;
+  border-radius: 2px;
+  transition: background var(--t-colour), color var(--t-colour);
+}
+.nav-book::after { display: none; }
+.nav-book:hover { background: var(--c-rose); color: var(--c-white); }
+
+/* Hamburger */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 810;
+}
+.nav-burger span {
+  width: 26px; height: 1.5px;
+  background: var(--c-rose);
+  transition: transform 0.4s var(--ease-gentle), opacity 0.3s ease;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile slide-in panel */
+.mobile-panel {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(78vw, 340px);
+  height: 100vh;
+  background: linear-gradient(160deg, var(--c-blush-soft), var(--c-blush));
+  z-index: 805;
+  transform: translateX(100%);
+  transition: transform 0.6s var(--ease-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--sp-lg);
+  gap: 1.8rem;
+}
+.mobile-panel.open { transform: translateX(0); }
+.mobile-panel a {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--c-rose);
+  letter-spacing: var(--ls-airy);
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.5s var(--ease-soft), transform 0.5s var(--ease-soft);
+}
+.mobile-panel.open a { opacity: 1; transform: translateX(0); }
+/* Staggered entrance */
+.mobile-panel.open a:nth-child(1){ transition-delay: 0.15s; }
+.mobile-panel.open a:nth-child(2){ transition-delay: 0.24s; }
+.mobile-panel.open a:nth-child(3){ transition-delay: 0.33s; }
+.mobile-panel.open a:nth-child(4){ transition-delay: 0.42s; }
+.mobile-panel.open a:nth-child(5){ transition-delay: 0.51s; }
+
+/* ============================================================
+   REUSABLE — buttons, section headings, reveal utilities
+   ============================================================ */
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0.95rem 2.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-airy);
+  border-radius: 2px;
+  transition: transform var(--t-transform), background var(--t-colour),
+              color var(--t-colour), box-shadow var(--t-colour);
+}
+.btn-filled {
+  background: var(--c-rose);
+  color: var(--c-white);
+}
+.btn-filled:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(139,58,74,0.32);
+}
+.btn-ghost {
+  border: 1px solid var(--c-gold);
+  color: var(--c-rose);
+  background: transparent;
+}
+.btn-ghost:hover {
+  background: var(--c-gold);
+  color: var(--c-white);
+  transform: translateY(-3px);
+}
+/* Soft ripple span injected by JS */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(253,248,245,0.5);
+  animation: rippleOut 0.7s var(--ease-soft);
+  pointer-events: none;
+}
+@keyframes rippleOut { to { transform: scale(3.5); opacity: 0; } }
+
+.section { padding: var(--sp-2xl) clamp(1.5rem, 5vw, 4rem); }
+.wrap { max-width: var(--maxw); margin: 0 auto; }
+
+/* Section eyebrow heading with gold rules */
+.sec-head {
+  text-align: center;
+  margin-bottom: var(--sp-xl);
+}
+.sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-gold);
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+}
+.sec-eyebrow::before,
+.sec-eyebrow::after {
+  content: "";
+  width: 48px; height: 1px;
+  background: var(--c-gold);
+}
+.sec-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: var(--c-rose);
+}
+
+/* Generic scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--t-reveal), transform var(--t-reveal);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Word-by-word clip-path reveal for headlines */
+.word-reveal { display: inline-block; overflow: hidden; vertical-align: top; }
+.word-reveal > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.7s var(--ease-soft);
+}
+.word-reveal.in > span { transform: translateY(0); }
+
+/* ============================================================
+   3. HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem clamp(1.5rem, 5vw, 4rem) 6rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 8%, rgba(212,175,106,0.16), transparent 42%),
+    radial-gradient(circle at 12% 90%, rgba(242,212,215,0.22), transparent 45%),
+    var(--c-white);
+}
+.hero-content { position: relative; z-index: 3; max-width: 760px; }
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 6.6rem);
+  color: var(--c-ink);
+  line-height: 1.02;
+}
+.hero h1 .line { display: block; }
+.hero h1 .accent { color: var(--c-rose); font-style: italic; }
+.hero-tag {
+  margin-top: var(--sp-md);
+  max-width: 520px;
+  font-size: 1.1rem;
+  color: #5a4044;
+  font-weight: 300;
+}
+.hero-ctas {
+  margin-top: var(--sp-lg);
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* Floating cherry-blossom-toned blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.28;
+  z-index: 1;
+  background: radial-gradient(circle at 30% 30%, var(--c-blush), rgba(242,212,215,0));
+}
+.blob.b1 { width: 320px; height: 320px; top: 12%; right: 8%;  animation: drift1 22s ease-in-out infinite alternate; }
+.blob.b2 { width: 220px; height: 220px; bottom: 14%; left: 6%; animation: drift2 26s ease-in-out infinite alternate; }
+.blob.b3 { width: 160px; height: 160px; top: 48%; right: 30%; animation: drift3 20s ease-in-out infinite alternate; }
+@keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-40px,50px) scale(1.12); } }
+@keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(50px,-30px) scale(1.08); } }
+@keyframes drift3 { from { transform: translate(0,0) scale(1); } to { transform: translate(-30px,-40px) scale(0.92); } }
+
+/* ============================================================
+   CHERRY BLOSSOM PETALS — falling animation over the page
+   ============================================================ */
+#petals {
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.6s ease;
+}
+.petal {
+  position: absolute;
+  top: 0; left: 0;
+  /* simple, always-visible cherry-blossom petal silhouette */
+  border-radius: 100% 0 100% 0;
+  background: radial-gradient(circle at 70% 30%,
+              #f7dde0, var(--petal-c, var(--c-blush)) 65%, var(--petal-e, #e7b6bd) 100%);
+  box-shadow: inset 0 0 3px rgba(255,255,255,0.5);
+  opacity: 0.85;
+  will-change: transform, opacity;
+}
+/* Occasional gold-dusted petal — champagne gradient, soft glow + a twinkling sparkle */
+.petal.gold {
+  background: radial-gradient(ellipse at 60% 25%,
+              #fff6e2 0%, #e9cd8e 45%, var(--c-gold) 100%);
+  box-shadow: inset 0 0 5px rgba(255,255,255,0.6), 0 0 8px rgba(212,175,106,0.65);
+}
+.petal.gold::after {
+  content: "";
+  position: absolute;
+  top: 18%; left: 60%;
+  width: 35%; height: 35%;
+  background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 60%);
+  border-radius: 50%;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.6); }
+  50%      { opacity: 1;   transform: scale(1.2); }
+}
+
+/* ============================================================
+   4. SERVICES
+   ============================================================ */
+.services { background: var(--c-white); }
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+.svc-card {
+  background: var(--c-blush-soft);
+  border-top: 2px solid var(--c-rose);
+  padding: 2.2rem 2rem;
+  border-radius: 3px;
+  transition: transform var(--t-transform), box-shadow var(--t-colour),
+              border-color var(--t-colour);
+}
+.svc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(242,212,215,0.7);
+  border-top-color: var(--c-gold);
+}
+.svc-card h3 {
+  font-size: 1.55rem;
+  color: var(--c-rose);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: 0.5rem;
+}
+.svc-card p {
+  font-size: 0.92rem;
+  color: var(--c-ink);
+  min-height: 2.6em;
+  margin-bottom: 1rem;
+}
+.svc-price {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--c-gold);
+  font-weight: 600;
+}
+
+/* ============================================================
+   5. ABOUT
+   ============================================================ */
+.about { background: var(--c-blush-soft); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-xl);
+  align-items: center;
+}
+.about-img {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 2px solid var(--c-gold);
+  padding: 12px;
+  /* ---- ABOUT IMAGE — manicured fingertips illustration (swap point) ---- */
+  background-image: url("img/fingertips.svg");
+  background-size: cover;
+  background-position: center;
+  background-clip: content-box;
+  /* horizontal clip-path wipe on reveal */
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.1s var(--ease-soft);
+}
+.about-img.in { clip-path: inset(0 0 0 0); }
+.about h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--c-rose);
+  margin-bottom: var(--sp-md);
+}
+.about p {
+  margin-bottom: 1.2rem;
+  color: #4a3236;
+  font-size: 1.02rem;
+}
+.about-stats {
+  display: flex;
+  gap: 1.8rem;
+  margin-top: var(--sp-md);
+  flex-wrap: wrap;
+}
+.stat { position: relative; padding-right: 1.8rem; }
+.stat:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0; top: 10%;
+  width: 1px; height: 80%;
+  background: var(--c-gold);
+}
+.stat .num {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  color: var(--c-gold);
+  font-weight: 600;
+}
+.stat .lbl {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-rose);
+}
+
+/* ============================================================
+   6. SIGNATURE LOOK SPOTLIGHT
+   ============================================================ */
+.spotlight {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: var(--c-blush);
+  padding: var(--sp-xl) var(--sp-md);
+}
+.spotlight-bg {
+  position: absolute;
+  inset: -15% 0;
+  z-index: 1;
+  /* ---- SIGNATURE LOOK IMAGE — french-tip illustration, darkened for text ---- */
+  background-image: linear-gradient(rgba(20,8,11,0.45), rgba(20,8,11,0.35)), url("img/french.svg");
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+.spotlight::after {  /* inset gold frame */
+  content: "";
+  position: absolute;
+  inset: 28px;
+  border: 1px solid var(--c-gold);
+  z-index: 3;
+  pointer-events: none;
+}
+.spotlight-veil {
+  position: absolute; inset: 0; z-index: 2;
+  background: radial-gradient(ellipse at center, rgba(26,10,13,0.15), rgba(26,10,13,0.5));
+}
+.spotlight-content { position: relative; z-index: 4; max-width: 640px; }
+.spotlight h2 {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  color: var(--c-white);
+  text-shadow: 0 4px 24px rgba(26,10,13,0.45);
+}
+.spotlight .poem {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--c-gold);
+  margin: 1.4rem 0 2.4rem;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   7. GALLERY
+   ============================================================ */
+.gallery { background: var(--c-blush-soft); }
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1.1rem;
+}
+.gal-cell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--c-gold-soft);
+  border-radius: 3px;
+  /* ---- GALLERY IMAGES — swap each background-image ---- */
+  background: linear-gradient(150deg, var(--c-blush), #c97a86 70%, var(--c-rose));
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--t-transform);
+}
+.gal-cell:hover { transform: scale(1.04); z-index: 2; }
+.gal-cell .overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--c-rose-soft);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gal-cell:hover .overlay { opacity: 1; }
+.gal-cell .overlay span {
+  color: var(--c-white);
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  letter-spacing: var(--ls-airy);
+}
+/* Asymmetric spans for editorial feel */
+.gal-cell.tall  { grid-row: span 2; }
+.gal-cell.wide  { grid-column: span 2; }
+.gal-cell.big   { grid-row: span 2; grid-column: span 2; }
+
+/* ============================================================
+   8. TESTIMONIALS — dark deep-rose moment
+   ============================================================ */
+.testimonials {
+  position: relative;
+  background: var(--c-rose);
+  overflow: hidden;
+}
+.testimonials .quote-mark {
+  position: absolute;
+  top: -2rem; left: 3%;
+  font-family: var(--font-serif);
+  font-size: 26rem;
+  line-height: 1;
+  color: var(--c-gold);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 1;
+}
+.testimonials .sec-title { color: var(--c-white); }
+.testimonials .sec-eyebrow { color: var(--c-gold); }
+.t-stage {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  min-height: 240px;
+  text-align: center;
+}
+.t-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.7s var(--ease-soft), transform 0.7s var(--ease-soft);
+  pointer-events: none;
+}
+.t-slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+.t-slide.exit-left { transform: translateX(-20px); }
+.t-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--c-white);
+  line-height: 1.5;
+}
+.t-stars { color: var(--c-gold); letter-spacing: 0.3em; margin: 1.4rem 0 0.6rem; }
+.t-name {
+  color: var(--c-gold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-airy);
+  font-size: 0.85rem;
+}
+.t-dots {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: var(--sp-lg);
+}
+.t-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(212,175,106,0.4);
+  transition: background var(--t-colour), transform var(--t-colour);
+}
+.t-dot.active { background: var(--c-gold); transform: scale(1.3); }
+
+/* ============================================================
+   9. BOOKING / CONTACT
+   ============================================================ */
+.booking { background: var(--c-white); }
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--sp-xl);
+}
+.booking h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--c-rose); }
+.booking .subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--c-gold);
+  margin: 0.5rem 0 var(--sp-lg);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; }
+.field {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.7rem 0;
+  border: none;
+  border-bottom: 1px solid var(--c-blush);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--c-ink);
+  outline: none;
+}
+.field textarea { resize: vertical; min-height: 70px; }
+.field label {
+  position: absolute;
+  left: 0; top: 0.7rem;
+  font-size: 0.95rem;
+  color: #9a7a7e;
+  pointer-events: none;
+  transition: transform 0.3s var(--ease-gentle), font-size 0.3s var(--ease-gentle),
+              color 0.3s ease;
+}
+/* Floating label */
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label,
+.field select:focus + label,
+.field select.filled + label {
+  transform: translateY(-1.4rem);
+  font-size: 0.7rem;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-rose);
+  text-transform: uppercase;
+}
+/* Gold expanding underline on focus */
+.field::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1.5px;
+  background: var(--c-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-soft);
+}
+.field.focused::after { transform: scaleX(1); }
+
+.booking-info { padding-top: 0.5rem; }
+.booking-info h3 {
+  color: var(--c-rose);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.booking-info p { color: #4a3236; margin-bottom: 0.6rem; font-size: 0.96rem; }
+.booking-info .label {
+  text-transform: uppercase;
+  letter-spacing: var(--ls-airy);
+  font-size: 0.7rem;
+  color: var(--c-gold);
+  margin-top: 1.6rem;
+}
+.booking-note {
+  margin-top: 2rem;
+  font-style: italic;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--c-rose);
+}
+
+/* ============================================================
+   10. FIND US
+   ============================================================ */
+.findus { background: var(--c-blush-soft); }
+.map-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--sp-xl);
+  align-items: center;
+}
+.map-box {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  background: linear-gradient(150deg, var(--c-blush), var(--c-blush-tint));
+  border: 1px solid var(--c-gold-soft);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* CSS-drawn champagne gold location pin */
+.pin {
+  position: relative;
+  width: 34px; height: 34px;
+  background: var(--c-gold);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 10px 24px rgba(212,175,106,0.5);
+  animation: pinFloat 3s ease-in-out infinite;
+}
+.pin::after {
+  content: "";
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 14px; height: 14px;
+  background: var(--c-white);
+  border-radius: 50%;
+}
+@keyframes pinFloat {
+  0%,100% { transform: rotate(-45deg) translateY(0); }
+  50%     { transform: rotate(-45deg) translateY(-8px); }
+}
+.findus h2 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--c-rose); margin-bottom: 1.4rem; }
+.findus p { color: #4a3236; margin-bottom: 0.8rem; }
+.findus .transport {
+  font-style: italic;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--c-gold);
+  margin-top: 1.4rem;
+}
+
+/* ============================================================
+   11. FOOTER
+   ============================================================ */
+.footer {
+  background: var(--c-ink);
+  color: var(--c-white);
+  border-top: 1px solid var(--c-gold);
+  padding: var(--sp-xl) clamp(1.5rem, 5vw, 4rem) var(--sp-lg);
+  text-align: center;
+}
+.footer-word {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  letter-spacing: var(--ls-airy);
+  color: var(--c-white);
+}
+.footer-tag {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--c-gold);
+  margin-top: 0.4rem;
+}
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: var(--sp-md) 0;
+}
+.footer-social a {
+  color: var(--c-gold);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: var(--ls-airy);
+  transition: letter-spacing var(--t-transform), color var(--t-colour);
+}
+.footer-social a:hover { letter-spacing: var(--ls-wide); color: var(--c-white); }
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+  max-width: 800px;
+  margin: var(--sp-lg) auto;
+  text-align: left;
+}
+.footer-cols h4 {
+  color: var(--c-gold);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-airy);
+  margin-bottom: 1rem;
+}
+.footer-cols p, .footer-cols a {
+  display: block;
+  color: rgba(253,248,245,0.85);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  transition: color var(--t-colour);
+}
+.footer-cols a:hover { color: var(--c-gold); }
+.footer-copy {
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-md);
+  border-top: 1px solid rgba(212,175,106,0.3);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: rgba(253,248,245,0.7);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .about-grid, .booking-grid, .map-grid { grid-template-columns: 1fr; gap: var(--sp-lg); }
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .gal-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  :root { --sp-2xl: 6rem; --sp-xl: 4rem; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .gal-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+  .gal-cell.wide, .gal-cell.big { grid-column: span 1; }
+  .gal-cell.big { grid-row: span 1; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .footer-cols { grid-template-columns: 1fr; text-align: center; gap: var(--sp-md); }
+  .hero-ctas .btn { width: 100%; text-align: center; }
+  .insta-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
+   EXTRA TOUCHES
+   ============================================================ */
+
+/* ---- Scroll progress bar (hairline gold at very top) ---- */
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--c-gold), var(--c-rose));
+  z-index: 9100;
+}
+
+/* ---- Brand monogram (small rose mark) ---- */
+.mark { display: inline-block; vertical-align: middle; }
+.nav-logo { display: inline-flex; align-items: center; }
+.nav-logo .mark { width: 22px; height: 22px; margin-right: 9px; color: var(--c-gold); }
+.footer-mark { width: 42px; height: 42px; color: var(--c-gold); margin: 0 auto 0.5rem; }
+
+/* ---- Magnetic buttons (faster transform follow) ---- */
+.btn.magnetic {
+  transition: transform 0.25s var(--ease-gentle), background var(--t-colour),
+              color var(--t-colour), box-shadow var(--t-colour);
+}
+
+/* ---- Marquee ribbon ---- */
+.marquee {
+  background: var(--c-ink);
+  border-top: 1px solid var(--c-gold);
+  border-bottom: 1px solid var(--c-gold);
+  overflow: hidden;
+  padding: 0.85rem 0;
+}
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--c-gold);
+  letter-spacing: var(--ls-airy);
+}
+.marquee span::after { content: "·"; margin: 0 1.6rem; opacity: 0.7; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---- Animated section divider (gold line draws in) ---- */
+.divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.1rem; padding: var(--sp-lg) 0;
+}
+.divider .l {
+  width: 0; height: 1px; background: var(--c-gold);
+  transition: width 1.2s var(--ease-soft);
+}
+.divider.in .l { width: clamp(50px, 16vw, 140px); }
+.divider .d {
+  color: var(--c-gold); font-size: 0.7rem;
+  opacity: 0; transform: rotate(45deg) scale(0.5);
+  transition: opacity 0.7s ease 0.4s, transform 0.7s var(--ease-soft) 0.4s;
+}
+.divider.in .d { opacity: 1; transform: rotate(45deg) scale(1); }
+
+/* ---- Service card badges ---- */
+.svc-card { position: relative; }
+.badge {
+  position: absolute; top: -2px; right: 18px;
+  background: var(--c-gold); color: var(--c-white);
+  font-family: var(--font-sans); font-weight: 500; font-size: 0.58rem;
+  text-transform: uppercase; letter-spacing: var(--ls-airy);
+  padding: 0.32rem 0.7rem; border-radius: 0 0 4px 4px;
+}
+.badge.new { background: var(--c-rose); }
+
+/* ---- Nail-salon illustrations across the image boxes ----
+   Hand-drawn SVG vignettes (polish, fingertips, french tips, nail art,
+   swatches, brush). Swap each url() for real photography later. */
+.gal-cell, .insta-cell { background-size: cover; background-position: center; background-repeat: no-repeat; }
+.gal-cell:nth-child(1) { background-image: url("img/fingertips.svg"); }
+.gal-cell:nth-child(2) { background-image: url("img/polish-rose.svg"); }
+.gal-cell:nth-child(3) { background-image: url("img/nailart.svg"); }
+.gal-cell:nth-child(4) { background-image: url("img/french.svg"); }
+.gal-cell:nth-child(5) { background-image: url("img/brush.svg"); }
+.gal-cell:nth-child(6) { background-image: url("img/polish-gold.svg"); }
+.gal-cell:nth-child(7) { background-image: url("img/swatches.svg"); }
+.gal-cell:nth-child(8) { background-image: url("img/blossom.svg"); }
+
+.insta-cell:nth-child(1) { background-image: url("img/nailart.svg"); }
+.insta-cell:nth-child(2) { background-image: url("img/polish-gold.svg"); }
+.insta-cell:nth-child(3) { background-image: url("img/fingertips.svg"); }
+.insta-cell:nth-child(4) { background-image: url("img/french.svg"); }
+.insta-cell:nth-child(5) { background-image: url("img/blossom.svg"); }
+.insta-cell:nth-child(6) { background-image: url("img/polish-rose.svg"); }
+
+/* ---- Gift card banner ---- */
+.giftcard {
+  position: relative; overflow: hidden; text-align: center;
+  background: linear-gradient(135deg, var(--c-ink) 0%, #3a1019 55%, var(--c-rose) 130%);
+  color: var(--c-white);
+  border-top: 1px solid var(--c-gold);
+  border-bottom: 1px solid var(--c-gold);
+  padding: var(--sp-xl) clamp(1.5rem, 5vw, 4rem);
+}
+.giftcard h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--c-white); }
+.giftcard p {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 1.25rem; color: var(--c-gold); margin: 0.6rem 0 2rem;
+}
+
+/* ---- FAQ accordion ---- */
+.faq { background: var(--c-white); }
+.faq-list { max-width: 780px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--c-blush); }
+.faq-q {
+  width: 100%; text-align: left;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: 1.5rem 0;
+  font-family: var(--font-serif); font-size: 1.45rem;
+  color: var(--c-rose); letter-spacing: var(--ls-tight);
+}
+.faq-q .plus {
+  color: var(--c-gold); font-size: 1.5rem; line-height: 1;
+  transition: transform 0.4s var(--ease-soft);
+}
+.faq-item.open .faq-q .plus { transform: rotate(135deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease-soft); }
+.faq-a p { padding: 0 0 1.5rem; color: #4a3236; font-size: 0.98rem; max-width: 660px; }
+
+/* ---- Form validation + success ---- */
+.field.error input, .field.error select, .field.error textarea { border-bottom-color: #c0392b; }
+.field .msg {
+  position: absolute; bottom: -1.05rem; left: 0;
+  font-size: 0.62rem; color: #c0392b; letter-spacing: var(--ls-tight);
+  text-transform: uppercase; opacity: 0; transition: opacity 0.3s ease;
+}
+.field.error .msg { opacity: 1; }
+.form-success {
+  margin-top: 1.4rem; padding: 1rem 1.4rem;
+  background: var(--c-blush-soft); border-left: 2px solid var(--c-gold);
+  color: var(--c-rose); font-family: var(--font-serif); font-style: italic; font-size: 1.1rem;
+  opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity 0.5s var(--ease-soft), transform 0.5s var(--ease-soft);
+}
+.form-success.show { opacity: 1; transform: translateY(0); }
+
+/* ---- Instagram strip ---- */
+.insta { background: var(--c-white); text-align: center; }
+.insta .handle { font-family: var(--font-serif); font-size: 1.7rem; color: var(--c-rose); }
+.insta .sub {
+  text-transform: uppercase; letter-spacing: var(--ls-wide);
+  font-size: 0.72rem; color: var(--c-gold); margin: 0.3rem 0 var(--sp-lg);
+}
+.insta-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 0.6rem; max-width: var(--maxw); margin: 0 auto;
+}
+.insta-cell {
+  position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 3px;
+  background: linear-gradient(150deg, var(--c-blush), #c97a86 70%, var(--c-rose));
+  transition: transform var(--t-transform);
+}
+.insta-cell .ig {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-white); font-size: 1.5rem;
+  background: var(--c-rose-soft); opacity: 0;
+  transition: opacity 0.4s var(--ease-gentle);
+}
+.insta-cell:hover { transform: scale(1.05); }
+.insta-cell:hover .ig { opacity: 1; }
+
+/* ---- Back-to-top button ---- */
+.to-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 850;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--c-gold); color: var(--c-white);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(212,175,106,0.5);
+  opacity: 0; pointer-events: none; transform: translateY(14px);
+  transition: opacity 0.4s var(--ease-soft), transform 0.4s var(--ease-soft), background var(--t-colour);
+}
+.to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.to-top:hover { background: var(--c-rose); }
+.to-top svg { width: 18px; height: 18px; }
+@media (max-width: 600px) { .to-top { bottom: 18px; right: 18px; } }
+
+/* ---- Gallery lightbox ---- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9600;
+  display: flex; align-items: center; justify-content: center; padding: 6vw;
+  background: rgba(26,10,13,0.85);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s var(--ease-soft);
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lightbox-img {
+  width: min(680px, 90vw); aspect-ratio: 4 / 3;
+  border: 1px solid var(--c-gold); border-radius: 3px;
+  background-image: url("img/fingertips.svg");
+  background-size: cover; background-position: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  transform: scale(0.92); transition: transform 0.5s var(--ease-soft);
+}
+.lightbox.open .lightbox-img { transform: scale(1); }
+.lightbox-close {
+  position: absolute; top: 22px; right: 30px;
+  color: var(--c-white); font-family: var(--font-serif); font-size: 2.4rem; line-height: 1;
+}
+
+/* ---- Gallery tilt needs a smooth transform + 3D context ---- */
+.gal-grid { perspective: 1000px; }
+.gal-cell { transition: transform 0.2s var(--ease-gentle); }
+
+</style>
+</head>
+<body class="splash-locked">
+
+<!-- ============================================================
+     GRAIN OVERLAY
+     ============================================================ -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="progress" aria-hidden="true"></div>
+
+<!-- ============================================================
+     CHERRY BLOSSOM PETALS (populated by JS)
+     ============================================================ -->
+<div id="petals" aria-hidden="true"></div>
+
+<!-- ============================================================
+     1. SPLASH / ENTRY PAGE
+     ============================================================ -->
+<div id="splash">
+  <div class="splash-inner">
+    <h1 class="splash-title">Nail Salon</h1>
+    <div class="splash-title-rule"></div>
+    <p class="splash-desc">Luxury Nail Studio · Glasgow</p>
+    <button class="splash-cta" id="enter-btn">Enter</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN SITE — hidden beneath splash until revealed
+     ============================================================ -->
+<div id="site">
+
+  <!-- ---------- 2. NAVIGATION ---------- -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo"><svg class="mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="16" cy="16" r="3"/><path d="M16 13a5 5 0 1 1-5 5"/><path d="M19 19a7 7 0 1 1-7-7"/></svg>Nail Salon</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#booking" class="nav-book">Book Now</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile slide-in panel -->
+  <div class="mobile-panel" id="mobile-panel">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#booking">Book Now</a>
+  </div>
+
+  <!-- ---------- 3. HERO ---------- -->
+  <header class="hero" id="hero">
+    <!-- Floating decorative blush blobs -->
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+
+    <div class="hero-content">
+      <h1 data-words>
+        <span class="line">The Art of</span>
+        <span class="line accent">Beautiful Nails.</span>
+      </h1>
+      <p class="hero-tag reveal">Glasgow's boutique nail studio. Where every detail is a work of art.</p>
+      <div class="hero-ctas reveal">
+        <a href="#booking" class="btn btn-filled magnetic">Book an Appointment</a>
+        <a href="#services" class="btn btn-ghost magnetic">Our Services</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ---------- MARQUEE RIBBON ---------- -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Manicures</span><span>Pedicures</span><span>Nail Art</span><span>Gel</span><span>Extensions</span><span>Bridal Nails</span><span>Glasgow</span><span>Manicures</span><span>Pedicures</span><span>Nail Art</span><span>Gel</span><span>Extensions</span><span>Bridal Nails</span><span>Glasgow</span>
+    </div>
+  </div>
+
+  <!-- ---------- 4. SERVICES ---------- -->
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow reveal">Our Services</span>
+        <h2 class="sec-title reveal">The Treatment Menu</h2>
+      </div>
+      <div class="svc-grid">
+        <!-- Each card: name (serif rose), description (ink), price (gold) -->
+        <div class="svc-card reveal"><h3>Classic Manicure</h3><p>A timeless shape, buff and polish for naturally elegant hands.</p><span class="svc-price">£28</span></div>
+        <div class="svc-card reveal"><span class="badge">Most loved</span><h3>Gel Manicure</h3><p>Long-lasting high-shine gel colour that wears beautifully for weeks.</p><span class="svc-price">£38</span></div>
+        <div class="svc-card reveal"><span class="badge new">Signature</span><h3>Luxury Manicure</h3><p>Our signature ritual — exfoliation, mask, massage and flawless finish.</p><span class="svc-price">£48</span></div>
+        <div class="svc-card reveal"><h3>Classic Pedicure</h3><p>Soothing soak, shaping and polish to leave feet soft and refined.</p><span class="svc-price">£32</span></div>
+        <div class="svc-card reveal"><h3>Gel Pedicure</h3><p>Durable gel colour for toes that stay immaculate all season long.</p><span class="svc-price">£42</span></div>
+        <div class="svc-card reveal"><h3>Luxury Pedicure</h3><p>An indulgent foot retreat with scrub, hot towels and deep massage.</p><span class="svc-price">£55</span></div>
+        <div class="svc-card reveal"><h3>Nail Extensions — Full Set</h3><p>Sculpted length and shape, tailored entirely to you.</p><span class="svc-price">£55</span></div>
+        <div class="svc-card reveal"><h3>Nail Extensions — Infill</h3><p>Keep your set pristine with a seamless regrowth infill.</p><span class="svc-price">£38</span></div>
+        <div class="svc-card reveal"><h3>Gel Removal</h3><p>Gentle, damage-free removal that protects your natural nail.</p><span class="svc-price">£15</span></div>
+        <div class="svc-card reveal"><h3>Nail Art — Per Nail</h3><p>Hand-painted detail, crystals and fine-line art on request.</p><span class="svc-price">from £3</span></div>
+        <div class="svc-card reveal"><h3>Nail Art — Full Set</h3><p>A complete bespoke design across all ten nails.</p><span class="svc-price">from £25</span></div>
+        <div class="svc-card reveal"><h3>Paraffin Wax Treatment</h3><p>Warm paraffin to deeply soften and nourish tired hands.</p><span class="svc-price">£18</span></div>
+        <div class="svc-card reveal"><h3>Hand &amp; Arm Massage</h3><p>A blissful add-on with our signature rose-infused balm.</p><span class="svc-price">£12</span></div>
+        <div class="svc-card reveal"><span class="badge new">Bridal</span><h3>Bridal Nails</h3><p>The perfect finishing touch for your most beautiful day.</p><span class="svc-price">£95</span></div>
+        <div class="svc-card reveal"><h3>Bridal Trial</h3><p>Perfect your look in advance with a relaxed pre-wedding trial.</p><span class="svc-price">£65</span></div>
+        <div class="svc-card reveal"><h3>Nail Repair — Per Nail</h3><p>A quick, invisible fix to restore a chipped or broken nail.</p><span class="svc-price">£8</span></div>
+      </div>
+      <!-- Animated gold divider -->
+      <div class="divider"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+    </div>
+  </section>
+
+  <!-- ---------- 5. ABOUT ---------- -->
+  <section class="section about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-img" data-clip></div>
+      <div>
+        <span class="sec-eyebrow reveal" style="justify-content:flex-start">Our Story</span>
+        <h2 class="reveal">Crafted in Glasgow.<br />Inspired by Art.</h2>
+        <p class="reveal">Born and raised in Glasgow, our studio began with a simple belief — that nail care, done beautifully, is one of life's quiet luxuries. We opened our doors in the heart of the city to bring something a little more considered to the everyday.</p>
+        <p class="reveal">Our founding nail artist trained in London and Paris, perfecting her craft in some of the most celebrated nail bars in Europe, before bringing that artistry home to Glasgow. Every treatment is delivered with the same precision, patience and care.</p>
+        <p class="reveal">We use only premium, professional products and create a calm, indulgent space where you can truly switch off. Because nail care is self-care — and every client deserves to leave feeling extraordinary.</p>
+        <div class="about-stats reveal">
+          <div class="stat"><div class="num" data-count="2016" data-prefix="Est. ">Est. 2016</div><div class="lbl">Established</div></div>
+          <div class="stat"><div class="num" data-static>Premium</div><div class="lbl">Products Only</div></div>
+          <div class="stat"><div class="num" data-static>Glasgow's</div><div class="lbl">Favourite Studio</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 6. SIGNATURE LOOK SPOTLIGHT ---------- -->
+  <section class="spotlight" id="spotlight">
+    <div class="spotlight-bg" id="spotlight-bg"></div>
+    <div class="spotlight-veil"></div>
+    <div class="spotlight-content">
+      <span class="sec-eyebrow reveal" style="color:var(--c-gold)">Signature Look</span>
+      <h2 class="reveal">The Glasgow Rose</h2>
+      <p class="poem reveal">A blush of petal-soft colour, hand-painted and dusted in gold.<br />Romance, reimagined for your fingertips.</p>
+      <a href="#booking" class="btn btn-ghost reveal" style="color:var(--c-white);border-color:var(--c-gold)">Book This Look</a>
+    </div>
+  </section>
+
+  <!-- ---------- 7. GALLERY ---------- -->
+  <section class="section gallery" id="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow reveal">Gallery</span>
+        <h2 class="sec-title reveal">A Curated Edit</h2>
+      </div>
+      <!-- Asymmetric editorial masonry. Swap each cell's background-image. -->
+      <div class="gal-grid">
+        <div class="gal-cell big reveal"><div class="overlay"><span>View</span></div></div>
+        <div class="gal-cell tall reveal"><div class="overlay"><span>View</span></div></div>
+        <div class="gal-cell reveal"><div class="overlay"><span>View</span></div></div>
+        <div class="gal-cell reveal"><div class="overlay"><span>View</span></div></div>
+        <div class="gal-cell wide reveal"><div class="overlay"><span>View</span></div></div>
+        <div class="gal-cell tall reveal"><div class="overlay"><span>View</span></div></div>
+        <div class="gal-cell reveal"><div class="overlay"><span>View</span></div></div>
+        <div class="gal-cell reveal"><div class="overlay"><span>View</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- GIFT CARD BANNER ---------- -->
+  <section class="giftcard">
+    <div class="wrap">
+      <span class="sec-eyebrow reveal" style="color:var(--c-gold)">A Little Something</span>
+      <h2 class="reveal">The Perfect Gift</h2>
+      <p class="reveal">Give the gift of a little luxury — gift cards available for any treatment.</p>
+      <a href="#booking" class="btn btn-ghost magnetic reveal" style="color:var(--c-white);border-color:var(--c-gold)">Buy a Gift Card</a>
+    </div>
+  </section>
+
+  <!-- ---------- 8. TESTIMONIALS ---------- -->
+  <section class="section testimonials" id="testimonials">
+    <div class="quote-mark">&ldquo;</div>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow reveal">Kind Words</span>
+        <h2 class="sec-title reveal">Loved by Glasgow</h2>
+      </div>
+      <div class="t-stage" id="t-stage">
+        <div class="t-slide active">
+          <p class="t-quote">I've been coming here since they opened and my nails have never looked better. Pure luxury, every single time.</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-name">Eilidh M. · Glasgow</div>
+        </div>
+        <div class="t-slide">
+          <p class="t-quote">The most relaxing experience in Glasgow. I left feeling like a completely different person. Honestly couldn't recommend them more.</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-name">Shona R. · West End</div>
+        </div>
+        <div class="t-slide">
+          <p class="t-quote">Absolutely beautiful wee studio. The attention to detail is unreal and the girls make you feel so welcome. My happy place.</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-name">Carla D. · Shawlands</div>
+        </div>
+        <div class="t-slide">
+          <p class="t-quote">Got my bridal nails done here and cried they were that gorgeous. Worth every penny. Thank you for making me feel a million dollars.</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-name">Megan T. · Bearsden</div>
+        </div>
+        <div class="t-slide">
+          <p class="t-quote">Proper luxury without the fuss. It feels like a wee Parisian getaway right in the middle of the city. I'm never going anywhere else.</p>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-name">Aisha K. · Merchant City</div>
+        </div>
+      </div>
+      <div class="t-dots" id="t-dots"></div>
+    </div>
+  </section>
+
+  <!-- ---------- 9. BOOKING / CONTACT ---------- -->
+  <section class="section booking" id="booking">
+    <div class="wrap booking-grid">
+      <div>
+        <span class="sec-eyebrow reveal" style="justify-content:flex-start">Reservations</span>
+        <h2 class="reveal">Book Your Appointment</h2>
+        <p class="subtitle reveal">Treat yourself. You deserve it.</p>
+
+        <form id="booking-form" class="reveal" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <input type="text" id="f-name" placeholder=" " required />
+              <label for="f-name">Full Name</label>
+              <span class="msg">Please enter your name</span>
+            </div>
+            <div class="field">
+              <input type="email" id="f-email" placeholder=" " required />
+              <label for="f-email">Email</label>
+              <span class="msg">Please enter a valid email</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <input type="tel" id="f-phone" placeholder=" " />
+              <label for="f-phone">Phone Number</label>
+            </div>
+            <div class="field">
+              <select id="f-service">
+                <option value="" selected disabled hidden></option>
+                <option>Classic Manicure</option>
+                <option>Gel Manicure</option>
+                <option>Luxury Manicure</option>
+                <option>Classic Pedicure</option>
+                <option>Gel Pedicure</option>
+                <option>Luxury Pedicure</option>
+                <option>Nail Extensions — Full Set</option>
+                <option>Nail Extensions — Infill</option>
+                <option>Gel Removal</option>
+                <option>Nail Art</option>
+                <option>Paraffin Wax Treatment</option>
+                <option>Hand &amp; Arm Massage</option>
+                <option>Bridal Nails</option>
+                <option>Bridal Trial</option>
+                <option>Nail Repair</option>
+              </select>
+              <label for="f-service">Service Required</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <input type="text" id="f-date" placeholder=" " onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" />
+              <label for="f-date">Preferred Date</label>
+            </div>
+            <div class="field">
+              <input type="text" id="f-time" placeholder=" " onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'" />
+              <label for="f-time">Preferred Time</label>
+            </div>
+          </div>
+          <div class="field">
+            <textarea id="f-notes" placeholder=" "></textarea>
+            <label for="f-notes">Any Special Requests or Occasions</label>
+          </div>
+          <button type="submit" class="btn btn-filled magnetic" id="submit-btn">Request Appointment</button>
+          <div class="form-success" id="form-success">Thank you — your request has been received. We'll be in touch very soon to confirm your appointment.</div>
+        </form>
+      </div>
+
+      <aside class="booking-info reveal">
+        <h3>Visit the Studio</h3>
+        <p>14 Princes Square<br />Glasgow, G1</p>
+        <p class="label">Telephone</p>
+        <p>0141 555 0182</p>
+        <p class="label">Opening Hours</p>
+        <p>Tuesday – Saturday · 10am – 7pm<br />Sunday · 11am – 5pm<br />Monday · Closed</p>
+        <p class="booking-note">For bridal bookings and group appointments, please call us directly.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ---------- FAQ ACCORDION ---------- -->
+  <section class="section faq" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-eyebrow reveal">Good to Know</span>
+        <h2 class="sec-title reveal">Frequently Asked</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-q" type="button">How should I care for my nails after a treatment?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Keep your hands moisturised daily and apply cuticle oil to keep gel and extensions looking fresh. Wear gloves for cleaning and washing up, and book an infill every two to three weeks to maintain your set.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" type="button">What is your cancellation policy?<span class="plus">+</span></button>
+          <div class="faq-a"><p>We kindly ask for at least 24 hours' notice if you need to cancel or rearrange. Late cancellations and no-shows may be subject to a small fee, as your time with us is reserved especially for you.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" type="button">Is there parking nearby?<span class="plus">+</span></button>
+          <div class="faq-a"><p>We're right in the city centre, two minutes from Buchanan Street subway. The nearest car parks are at Mitchell Street and the St Enoch Centre, both a short stroll away.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" type="button">Do you offer bridal and group bookings?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Absolutely — bridal nails, trials and group appointments are some of our favourite bookings. Please call us directly so we can tailor the perfect experience for your special day.</p></div>
+        </div>
+      </div>
+      <!-- Animated gold divider -->
+      <div class="divider"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+    </div>
+  </section>
+
+  <!-- ---------- 10. FIND US ---------- -->
+  <section class="section findus" id="findus">
+    <div class="wrap map-grid">
+      <!-- Map placeholder with CSS-drawn gold pin -->
+      <div class="map-box reveal"><div class="pin"></div></div>
+      <div>
+        <span class="sec-eyebrow reveal" style="justify-content:flex-start">Find Us</span>
+        <h2 class="reveal">In the Heart of the City</h2>
+        <p class="reveal">14 Princes Square, Glasgow, G1</p>
+        <p class="reveal">Tucked within Glasgow's most elegant shopping arcade, our studio is a calm escape from the bustle of the city centre.</p>
+        <p class="transport reveal">2 minutes from Buchanan Street subway. Steps from the Style Mile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- INSTAGRAM STRIP ---------- -->
+  <section class="section insta" id="insta">
+    <div class="handle reveal">@nailsalon.glasgow</div>
+    <div class="sub reveal">Follow our latest looks</div>
+    <!-- Swap each cell's background-image for a real photo -->
+    <div class="insta-grid">
+      <div class="insta-cell reveal"><div class="ig">♡</div></div>
+      <div class="insta-cell reveal"><div class="ig">♡</div></div>
+      <div class="insta-cell reveal"><div class="ig">♡</div></div>
+      <div class="insta-cell reveal"><div class="ig">♡</div></div>
+      <div class="insta-cell reveal"><div class="ig">♡</div></div>
+      <div class="insta-cell reveal"><div class="ig">♡</div></div>
+    </div>
+  </section>
+
+  <!-- ---------- 11. FOOTER ---------- -->
+  <footer class="footer">
+    <svg class="footer-mark mark" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="16" cy="16" r="3"/><path d="M16 13a5 5 0 1 1-5 5"/><path d="M19 19a7 7 0 1 1-7-7"/></svg>
+    <div class="footer-word">Nail Salon</div>
+    <div class="footer-tag">Glasgow's boutique nail studio. Est. 2016.</div>
+    <div class="footer-social">
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+      <a href="#">TikTok</a>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h4>Opening Hours</h4>
+        <p>Tue – Sat · 10am – 7pm</p>
+        <p>Sunday · 11am – 5pm</p>
+        <p>Monday · Closed</p>
+      </div>
+      <div>
+        <h4>Address</h4>
+        <p>14 Princes Square</p>
+        <p>Glasgow, G1</p>
+        <p>0141 555 0182</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Book Now</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Nail Salon · Glasgow · All Rights Reserved</div>
+  </footer>
+
+</div><!-- /#site -->
+
+<!-- Back-to-top button -->
+<button class="to-top" id="to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- Gallery lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <span class="lightbox-close" id="lightbox-close" role="button" aria-label="Close">&times;</span>
+  <div class="lightbox-img" id="lightbox-img"></div>
+</div>
+
+<script>
+/* ============================================================
+   JAVASCRIPT — vanilla, zero libraries
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* Animations are always on (site owner's preference) — petals, magnetic
+     buttons, gallery tilt and the cinematic entrance all run regardless of
+     the OS "reduce motion" setting. */
+  var reduce = false;
+
+  /* ----------------------------------------------------------
+     1. SPLASH ENTRY & EXIT
+     ---------------------------------------------------------- */
+  var splash   = document.getElementById('splash');
+  var site     = document.getElementById('site');
+  var enterBtn = document.getElementById('enter-btn');
+
+  function enterSite() {
+    splash.classList.add('exiting');
+    // Reveal main site immediately beneath the exiting curtain
+    site.classList.add('revealed');
+    document.body.classList.remove('splash-locked');
+
+    // Kick off the hero loading sequence
+    runHeroSequence();
+
+    // After the cinematic exit completes, remove splash from the DOM entirely
+    splash.addEventListener('transitionend', function handler(e) {
+      if (e.propertyName === 'opacity') {
+        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+        splash.removeEventListener('transitionend', handler);
+      }
+    });
+    // Safety fallback removal
+    setTimeout(function () {
+      if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+    }, 2000);
+  }
+  enterBtn.addEventListener('click', enterSite);
+
+  /* ----------------------------------------------------------
+     HERO LOADING SEQUENCE — flower-opening entrance
+     ---------------------------------------------------------- */
+  function runHeroSequence() {
+    // Word-by-word headline reveal
+    var heroWords = document.querySelector('.hero [data-words]');
+    if (heroWords) wrapWords(heroWords);
+
+    // Trigger reveals in the hero shortly after curtain lifts
+    setTimeout(function () {
+      document.querySelectorAll('.hero .reveal, .hero .word-reveal')
+        .forEach(function (el, i) {
+          setTimeout(function () { el.classList.add('in'); }, i * 120);
+        });
+    }, 350);
+  }
+
+  /* ----------------------------------------------------------
+     WORD-BY-WORD CLIP-PATH WRAPPER
+     Wraps each word of a heading line in a clipping container.
+     ---------------------------------------------------------- */
+  function wrapWords(container) {
+    var lines = container.querySelectorAll('.line');
+    var wordIndex = 0;
+    lines.forEach(function (line) {
+      var words = line.textContent.trim().split(/\s+/);
+      line.innerHTML = '';
+      words.forEach(function (w) {
+        var wrap = document.createElement('span');
+        wrap.className = 'word-reveal';
+        var inner = document.createElement('span');
+        inner.textContent = w;
+        inner.style.transitionDelay = (wordIndex * 0.09) + 's';
+        wrap.appendChild(inner);
+        line.appendChild(wrap);
+        line.appendChild(document.createTextNode(' '));
+        // Trigger after insertion
+        (function (wrapEl) {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { wrapEl.classList.add('in'); });
+          });
+        })(wrap);
+        wordIndex++;
+      });
+    });
+  }
+
+  /* ----------------------------------------------------------
+     2. NAVIGATION — scroll style, burger, mobile panel
+     ---------------------------------------------------------- */
+  var nav    = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  var panel  = document.getElementById('mobile-panel');
+
+  /* ---- Unified, rAF-throttled scroll system ----
+     One listener, all work batched into a single frame, layout values cached
+     so scrolling never triggers synchronous reflows. */
+  var scrollFns = [];
+  var ticking = false;
+  function onScrollTick() {
+    var y = window.scrollY || window.pageYOffset;
+    for (var i = 0; i < scrollFns.length; i++) scrollFns[i](y);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScrollTick); }
+  }, { passive: true });
+
+  // nav background on scroll
+  scrollFns.push(function (y) { nav.classList.toggle('scrolled', y > 40); });
+
+  burger.addEventListener('click', function () {
+    burger.classList.toggle('open');
+    panel.classList.toggle('open');
+  });
+  panel.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      burger.classList.remove('open');
+      panel.classList.remove('open');
+    });
+  });
+
+  /* Active section highlight in nav */
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  var sections = Array.prototype.map.call(navLinks, function (l) {
+    return document.querySelector(l.getAttribute('href'));
+  });
+  /* Cached layout metrics — recomputed on load/resize only, never mid-scroll */
+  var metrics = {};
+  function measure() {
+    var doc = document.documentElement;
+    metrics.vh = window.innerHeight;
+    metrics.docMax = doc.scrollHeight - doc.clientHeight;
+    var hero = document.getElementById('hero');
+    metrics.heroH = hero ? hero.offsetHeight : metrics.vh;
+    var spot = document.getElementById('spotlight');
+    metrics.spotTop = spot ? spot.offsetTop : 0;
+    metrics.spotH = spot ? spot.offsetHeight : 0;
+    metrics.secs = Array.prototype.map.call(sections, function (s) {
+      return s ? { top: s.offsetTop, h: s.offsetHeight } : null;
+    });
+  }
+  window.addEventListener('resize', measure, { passive: true });
+  window.addEventListener('load', measure);
+  measure();
+
+  // active nav link
+  scrollFns.push(function (y) {
+    var pos = y + metrics.vh * 0.35, found = -1;
+    for (var i = 0; i < metrics.secs.length; i++) {
+      var s = metrics.secs[i];
+      if (s && s.top <= pos && s.top + s.h > pos) found = i;
+    }
+    if (found >= 0) {
+      navLinks.forEach(function (l) { l.classList.remove('active'); });
+      navLinks[found].classList.add('active');
+    }
+  });
+
+  /* ----------------------------------------------------------
+     SMOOTH SCROLL for anchor links with easing
+     ---------------------------------------------------------- */
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+  function smoothScrollTo(targetY, duration) {
+    var startY = window.scrollY;
+    var diff = targetY - startY;
+    var start;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      window.scrollTo(0, startY + diff * easeInOutCubic(p));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href');
+      if (id === '#') return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      smoothScrollTo(target.offsetTop - 70, 900);
+    });
+  });
+
+  /* ----------------------------------------------------------
+     3. SCROLL REVEALS — Intersection Observer
+     ---------------------------------------------------------- */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        // Stagger children inside a shared container
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+  // Observe all reveal elements (skip those inside the hero — handled by sequence)
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    if (el.closest('.hero')) return;
+    io.observe(el);
+  });
+
+  /* Staggered grid reveals (services & gallery) */
+  function staggerGrid(selector) {
+    var cards = document.querySelectorAll(selector);
+    cards.forEach(function (card, i) {
+      card.style.transitionDelay = ((i % 4) * 0.12) + 's';
+    });
+  }
+  staggerGrid('.svc-grid .reveal');
+  staggerGrid('.gal-grid .reveal');
+
+  /* Clip-path image reveal (about) */
+  var clipImg = document.querySelector('[data-clip]');
+  if (clipImg) {
+    var clipIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); clipIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.3 });
+    clipIO.observe(clipImg);
+  }
+
+  /* ----------------------------------------------------------
+     COUNT-UP STATS
+     ---------------------------------------------------------- */
+  var countEls = document.querySelectorAll('[data-count]');
+  var countIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var prefix = el.getAttribute('data-prefix') || '';
+      var dur = 1600, start;
+      function tick(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var val = Math.floor(easeInOutCubic(p) * (target - 2000) + 2000);
+        el.textContent = prefix + val;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = prefix + target;
+      }
+      requestAnimationFrame(tick);
+      countIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  countEls.forEach(function (el) { countIO.observe(el); });
+
+  /* ----------------------------------------------------------
+     6. PARALLAX — signature look background
+     ---------------------------------------------------------- */
+  var spotBg = document.getElementById('spotlight-bg');
+  var spotlight = document.getElementById('spotlight');
+  scrollFns.push(function (y) {
+    if (!spotBg) return;
+    var top = metrics.spotTop - y;            // equivalent to getBoundingClientRect().top
+    if (top > metrics.vh || top + metrics.spotH < 0) return;
+    spotBg.style.transform = 'translate3d(0,' + (((metrics.vh - top) * 0.12) - 40) + 'px,0)';
+  });
+
+  /* ----------------------------------------------------------
+     8. TESTIMONIALS CAROUSEL
+     ---------------------------------------------------------- */
+  var slides = document.querySelectorAll('.t-slide');
+  var dotsWrap = document.getElementById('t-dots');
+  var stage = document.getElementById('t-stage');
+  var current = 0, autoTimer;
+
+  slides.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.className = 't-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+    dot.addEventListener('click', function () { goToSlide(i); resetAuto(); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = dotsWrap.querySelectorAll('.t-dot');
+
+  function goToSlide(n) {
+    if (n === current) return;
+    var prev = slides[current];
+    prev.classList.add('exit-left');
+    prev.classList.remove('active');
+    setTimeout(function () { prev.classList.remove('exit-left'); }, 700);
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+  }
+  function nextSlide() { goToSlide(current + 1); }
+  function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(nextSlide, 5000); }
+  resetAuto();
+  if (stage) {
+    stage.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
+    stage.addEventListener('mouseleave', resetAuto);
+  }
+
+  /* ----------------------------------------------------------
+     9. FORM — floating labels for select + ripple + submit
+     ---------------------------------------------------------- */
+  document.querySelectorAll('.field input, .field textarea, .field select')
+    .forEach(function (input) {
+      var field = input.closest('.field');
+      input.addEventListener('focus', function () { field.classList.add('focused'); });
+      input.addEventListener('blur', function () { field.classList.remove('focused'); });
+      // keep select label floated when a value is chosen
+      if (input.tagName === 'SELECT') {
+        input.addEventListener('change', function () {
+          input.classList.toggle('filled', !!input.value);
+        });
+      }
+    });
+
+  var form = document.getElementById('booking-form');
+  if (form) {
+    var nameField  = document.getElementById('f-name');
+    var emailField = document.getElementById('f-email');
+    var success    = document.getElementById('form-success');
+
+    function validateField(input) {
+      var field = input.closest('.field');
+      var ok = true;
+      if (input === nameField)  ok = input.value.trim().length > 1;
+      if (input === emailField) ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+      field.classList.toggle('error', !ok);
+      return ok;
+    }
+    // Clear the error state as soon as the user corrects the field
+    [nameField, emailField].forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        if (inp.closest('.field').classList.contains('error')) validateField(inp);
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var valid = validateField(nameField) & validateField(emailField);
+      if (!valid) {
+        // focus the first invalid field
+        var firstErr = form.querySelector('.field.error input');
+        if (firstErr) firstErr.focus();
+        return;
+      }
+      success.classList.add('show');
+      form.querySelector('#submit-btn').textContent = 'Request Sent';
+      setTimeout(function () {
+        form.reset();
+        document.querySelectorAll('.field select').forEach(function (s) { s.classList.remove('filled'); });
+        form.querySelector('#submit-btn').textContent = 'Request Appointment';
+      }, 600);
+      setTimeout(function () { success.classList.remove('show'); }, 7000);
+    });
+  }
+
+  /* ----------------------------------------------------------
+     RIPPLE EFFECT on all buttons
+     ---------------------------------------------------------- */
+  document.querySelectorAll('.btn').forEach(function (btn) {
+    btn.addEventListener('mousedown', function (e) {
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height);
+      var ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      ripple.style.top  = (e.clientY - rect.top  - size / 2) + 'px';
+      btn.appendChild(ripple);
+      setTimeout(function () { ripple.remove(); }, 700);
+    });
+  });
+
+  /* ----------------------------------------------------------
+     CHERRY BLOSSOM PETALS — drifting fall over the page
+     ---------------------------------------------------------- */
+  var petalLayer = document.getElementById('petals');
+
+  if (petalLayer && !reduce) {   // skip the whole petal system for reduced-motion
+
+  /* Three depth layers — far petals are small, blurred, slow and faint;
+     near petals are larger, sharp and quicker. Sparse + slow for a calm,
+     luxurious flurry. */
+  var LAYERS = [
+    { count: 6, size: [7, 11],  speed: [0.20, 0.40], blur: 1.6, op: [0.30, 0.50], z: -120 }, // far
+    { count: 6, size: [11, 16], speed: [0.40, 0.70], blur: 0.4, op: [0.55, 0.75], z: 0 },     // mid
+    { count: 5, size: [16, 24], speed: [0.70, 1.05], blur: 0,   op: [0.75, 0.95], z: 90 }     // near
+  ];
+
+  /* Soft blush / pink / near-white / hint-of-gold tones */
+  var TONES = [
+    ['#f7dde0', '#e7b6bd'],
+    ['#f3c4cb', '#dd9aa6'],
+    ['#fcebe8', '#f1c9cf'],
+    ['#f6d9c4', '#e6bd8f']   // warm champagne-tinted petal
+  ];
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  var petals = [];
+
+  LAYERS.forEach(function (layer) {
+    for (var i = 0; i < layer.count; i++) {
+      var el = document.createElement('div');
+      el.className = 'petal';
+      var size = rand(layer.size[0], layer.size[1]);
+      // roughly 1 in 5 petals is gold-dusted (favour the sharp near layer)
+      var isGold = Math.random() < (layer.blur ? 0.12 : 0.24);
+      if (isGold) {
+        el.className = 'petal gold';
+      } else {
+        var tone = TONES[Math.floor(Math.random() * TONES.length)];
+        el.style.setProperty('--petal-c', tone[0]);
+        el.style.setProperty('--petal-e', tone[1]);
+      }
+      el.style.width  = size + 'px';
+      el.style.height = (size * 0.9) + 'px';
+      el.style.filter = layer.blur ? 'blur(' + layer.blur + 'px)' : 'none';
+      petalLayer.appendChild(el);
+      petals.push({
+        el: el,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * -window.innerHeight,
+        z: layer.z,
+        speed: rand(layer.speed[0], layer.speed[1]),
+        baseOp: rand(layer.op[0], layer.op[1]),
+        sway: rand(0.6, 1.6),
+        swaySpeed: rand(0.006, 0.014),
+        phase: Math.random() * Math.PI * 2,
+        rot: Math.random() * 360,
+        rotSpeed: rand(-1.2, 1.2)
+      });
+    }
+  });
+
+  function fallLoop() {
+    var h = window.innerHeight, w = window.innerWidth;
+    for (var j = 0; j < petals.length; j++) {
+      var pt = petals[j];
+      pt.y += pt.speed;
+      pt.phase += pt.swaySpeed;
+      var sway = Math.sin(pt.phase) * (22 * pt.sway);
+      pt.rot += pt.rotSpeed;
+
+      // graceful fade: in at the top, out softly near the bottom
+      var fadeIn  = Math.min(pt.y / (h * 0.08), 1);
+      var fadeOut = Math.min((h - pt.y) / (h * 0.18), 1);
+      var op = pt.baseOp * Math.max(0, Math.min(fadeIn, fadeOut));
+
+      if (pt.y > h + 30) {                 // recycle off the bottom
+        pt.y = -30;
+        pt.x = Math.random() * w;
+      }
+      pt.el.style.opacity = op;
+      pt.el.style.transform =
+        'translate3d(' + (pt.x + sway) + 'px,' + pt.y + 'px,0) rotate(' + pt.rot + 'deg)';
+    }
+    requestAnimationFrame(fallLoop);
+  }
+  fallLoop();
+
+  /* Confine petals to the welcome area — fade the whole layer out as the
+     user scrolls past the hero so they don't drift over the rest of the site. */
+  scrollFns.push(function (y) {
+    petalLayer.style.opacity = 1 - Math.min(y / (metrics.heroH * 0.85), 1);
+  });
+
+  } /* end petal guard */
+
+  /* ----------------------------------------------------------
+     SCROLL PROGRESS BAR
+     ---------------------------------------------------------- */
+  var progress = document.getElementById('progress');
+  scrollFns.push(function (y) {
+    progress.style.width = (metrics.docMax > 0 ? (y / metrics.docMax) * 100 : 0) + '%';
+  });
+
+  /* ----------------------------------------------------------
+     MAGNETIC BUTTONS — gently pull toward the cursor
+     ---------------------------------------------------------- */
+  if (!reduce) {
+    document.querySelectorAll('.btn.magnetic').forEach(function (btn) {
+      var r = null;  // cache rect on enter — no layout read per mouse move
+      btn.addEventListener('mouseenter', function () { r = btn.getBoundingClientRect(); });
+      btn.addEventListener('mousemove', function (e) {
+        if (!r) r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width / 2;
+        var y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = 'translate3d(' + (x * 0.3) + 'px,' + (y * 0.4) + 'px,0)';
+      });
+      btn.addEventListener('mouseleave', function () { r = null; btn.style.transform = ''; });
+    });
+  }
+
+  /* ----------------------------------------------------------
+     ANIMATED SECTION DIVIDERS
+     ---------------------------------------------------------- */
+  var divIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); divIO.unobserve(e.target); }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.divider').forEach(function (d) { divIO.observe(d); });
+
+  /* ----------------------------------------------------------
+     FAQ ACCORDION
+     ---------------------------------------------------------- */
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function () {
+      var isOpen = item.classList.contains('open');
+      // close all (single-open accordion)
+      document.querySelectorAll('.faq-item').forEach(function (other) {
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ----------------------------------------------------------
+     BACK-TO-TOP BUTTON
+     ---------------------------------------------------------- */
+  var toTop = document.getElementById('to-top');
+  scrollFns.push(function (y) {
+    toTop.classList.toggle('show', y > metrics.vh * 0.8);
+  });
+  toTop.addEventListener('click', function () { smoothScrollTo(0, 800); });
+
+  // run all scroll handlers once so initial state is correct
+  onScrollTick();
+
+  /* ----------------------------------------------------------
+     GALLERY — 3D tilt toward cursor + lightbox
+     ---------------------------------------------------------- */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.gal-cell').forEach(function (cell) {
+    if (!reduce) {
+      var cr = null;  // cache rect on enter — avoids layout read every mouse move
+      cell.addEventListener('mouseenter', function () { cr = cell.getBoundingClientRect(); });
+      cell.addEventListener('mousemove', function (e) {
+        if (!cr) cr = cell.getBoundingClientRect();
+        var px = (e.clientX - cr.left) / cr.width - 0.5;
+        var py = (e.clientY - cr.top) / cr.height - 0.5;
+        cell.style.transform =
+          'scale(1.04) rotateX(' + (-py * 8) + 'deg) rotateY(' + (px * 8) + 'deg)';
+      });
+      cell.addEventListener('mouseleave', function () { cr = null; cell.style.transform = ''; });
+    }
+    // open the lightbox (carries the cell's own gradient fill)
+    cell.addEventListener('click', function () {
+      var bg = getComputedStyle(cell).backgroundImage;
+      lightboxImg.style.backgroundImage = bg;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+
+})();
+</script>
+</body>
+</html>
