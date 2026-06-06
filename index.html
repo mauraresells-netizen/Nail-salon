@@ -1266,7 +1266,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 </style>
 </head>
-<body class="splash-locked">
+<body>
 
 <!-- ============================================================
      GRAIN OVERLAY
@@ -1282,21 +1282,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <div id="petals" aria-hidden="true"></div>
 
 <!-- ============================================================
-     1. SPLASH / ENTRY PAGE
+     MAIN SITE (splash removed — loads directly)
      ============================================================ -->
-<div id="splash">
-  <div class="splash-inner">
-    <h1 class="splash-title">Nail Salon</h1>
-    <div class="splash-title-rule"></div>
-    <p class="splash-desc">Luxury Nail Studio · Glasgow</p>
-    <button class="splash-cta" id="enter-btn">Enter</button>
-  </div>
-</div>
-
-<!-- ============================================================
-     MAIN SITE — hidden beneath splash until revealed
-     ============================================================ -->
-<div id="site">
+<div id="site" class="revealed">
 
   <!-- ---------- 2. NAVIGATION ---------- -->
   <nav class="nav" id="nav">
@@ -1682,32 +1670,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   /* ----------------------------------------------------------
      1. SPLASH ENTRY & EXIT
      ---------------------------------------------------------- */
-  var splash   = document.getElementById('splash');
-  var site     = document.getElementById('site');
-  var enterBtn = document.getElementById('enter-btn');
-
-  function enterSite() {
-    splash.classList.add('exiting');
-    // Reveal main site immediately beneath the exiting curtain
-    site.classList.add('revealed');
-    document.body.classList.remove('splash-locked');
-
-    // Kick off the hero loading sequence
-    runHeroSequence();
-
-    // After the cinematic exit completes, remove splash from the DOM entirely
-    splash.addEventListener('transitionend', function handler(e) {
-      if (e.propertyName === 'opacity') {
-        if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-        splash.removeEventListener('transitionend', handler);
-      }
-    });
-    // Safety fallback removal
-    setTimeout(function () {
-      if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-    }, 2000);
-  }
-  enterBtn.addEventListener('click', enterSite);
+  var site = document.getElementById('site');
+  // Splash removed — site is shown immediately and hero sequence runs on load.
+  site.classList.add('revealed');
+  runHeroSequence();
 
   /* ----------------------------------------------------------
      HERO LOADING SEQUENCE — flower-opening entrance
