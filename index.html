@@ -134,7 +134,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background-image: url("pink-flowers-minimal-4k-g0.jpg");
   background-size: cover;
   background-position: center;
-  transition: transform var(--t-splash), opacity var(--t-splash), filter var(--t-splash);
+  transition: opacity 0.6s var(--ease-soft);
 }
 /* Stronger dark vignette + centre scrim for crisp, legible text */
 #splash::before {
@@ -216,17 +216,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   50%      { box-shadow: 0 0 34px rgba(212,175,106,0.6); }
 }
 
-/* Exit — cinematic dissolve: the text panel lifts away first, then the whole
-   image zooms in, blurs and fades to reveal the site beneath. */
+/* Exit — clean fade to reveal the site beneath (no zoom/blur). */
 #splash.exiting {
-  transform: scale(1.22);
   opacity: 0;
-  filter: blur(12px);
 }
 #splash.exiting .splash-inner {
   opacity: 0;
-  transform: translateY(-40px) scale(0.94);
-  transition: opacity 0.45s var(--ease-soft), transform 0.45s var(--ease-soft);
+  transition: opacity 0.35s var(--ease-soft);
 }
 
 /* ============================================================
